@@ -1,6 +1,14 @@
 <?php
-$json_str = file_get_contents("users.txt");
-$users = json_decode($json_str, true);
+$json_data = file_get_contents('users.txt');//string
+//$json_data = file('users.txt');
+var_dump($json_data);
+$users = json_decode($json_data, true);
+var_dump($users);//array
+if ($users === null) {
+    echo "JSON Error: " . json_last_error_msg();
+} else {
+    var_dump($users);
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -13,16 +21,16 @@ $users = json_decode($json_str, true);
 </head>
 <body>
 <table border="1">
+ <tr>
+     <?php foreach($users as $key=>$value): ?>
+     <th> <?=$key ?></th>
+     <?php endforeach; ?>
+ </tr>
     <tr>
-        <th>Field</th>
-        <th>Value</th>
+        <?php foreach($users as $key=> $value): ?>
+            <th> <?=$value ?></th>
+        <?php endforeach; ?>
     </tr>
-    <?php foreach ($users as $user => $value): ?>
-        <tr>
-            <td><?= $user ?></td>
-            <td><?= $value ?></td>
-        </tr>
-    <?php endforeach; ?>
 </table>
 </body>
 </html>

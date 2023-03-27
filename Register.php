@@ -15,9 +15,14 @@ if (!preg_match ("/^[0-9]*$/", $phon) ) {
     echo $ErrMsg3;
 }
 
-$data = $_POST;
-$json_data = json_encode($data);
-$file = fopen('users.txt', 'a');
-fwrite($file, $json_data);
-fclose($file);
 
+//$json_data = json_encode($_POST);
+//$file = fopen('users.txt', 'a');
+//fwrite($file, $json_data);
+//fclose($file);
+//var_dump($json_data);
+$json_data = json_encode($_POST, JSON_FORCE_OBJECT | JSON_PRETTY_PRINT) . PHP_EOL;
+file_put_contents('users.txt', $json_data, FILE_APPEND);
+echo 'Data saved successfully!';
+//$data = file_put_contents('users.txt', json_encode($_POST).PHP_EOL, FILE_APPEND);
+//string json
