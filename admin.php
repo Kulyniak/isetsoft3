@@ -1,14 +1,8 @@
 <?php
 $json_data = file_get_contents('users.txt');//string
-//$json_data = file('users.txt');
 var_dump($json_data);
 $users = json_decode($json_data, true);
 var_dump($users);//array
-if ($users === null) {
-    echo "JSON Error: " . json_last_error_msg();
-} else {
-    var_dump($users);
-}
 ?>
 <!doctype html>
 <html lang="en">
